@@ -100,6 +100,7 @@ nmap <F4> 	:tabnext<CR>
 "command SS call <SID>nl_ss()
 nmap <silent> <F9>	:call SVN_modify_view()<CR>
 
+let Tlist_GainFocus_On_ToggleOpen = 1
 if 0
 " VCScommand setting
 let VCSCommandEnableBufferSetup = 1
