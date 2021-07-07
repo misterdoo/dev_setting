@@ -1,0 +1,25 @@
+#!/bin/bash
+
+find . ! \( -type d -path './*/\.git*' -prune \) \
+	! -wholename "*.o" \
+	! -wholename "*.ko" \
+	! -wholename "*.ttf" \
+	! -wholename "*.bak" \
+	! -wholename "*gitignore" \
+	! -wholename "*gitmodules" \
+	! -wholename "*.a" \
+	! -wholename "*.dll" \
+	! -wholename "*.png" \
+	! -wholename "*.jpg" \
+	! -wholename "*.swp" \
+	! -wholename "*.files" \
+	! -wholename "*.out" \
+	! -wholename "*.pdf" \
+	! -wholename "*.exe" \
+	! -wholename "*.bat" \
+	! -wholename "*.xml" \
+	! -wholename "*.zip" \
+	! -wholename "*.tar" \
+	! -wholename "*.gz" \
+	-type f \
+	> cscope.files
