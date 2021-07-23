@@ -1,8 +1,11 @@
 #!/bin/bash
 
-find . ! \( -type d -path './*/\.git*' -prune \) \
+find . \
+	! \( -type d -path './*/\.git*' -prune \) \
+	! \( -type d -path './*/\autom4te.cache*' -prune \) \
 	! -wholename "*.o" \
 	! -wholename "*.ko" \
+	! -wholename "*.so" \
 	! -wholename "*.ttf" \
 	! -wholename "*.bak" \
 	! -wholename "*gitignore" \
@@ -21,5 +24,8 @@ find . ! \( -type d -path './*/\.git*' -prune \) \
 	! -wholename "*.zip" \
 	! -wholename "*.tar" \
 	! -wholename "*.gz" \
+	! -wholename "*.sh" \
+	! -wholename "*configure" \
+	! -wholename "*configure.ac" \
 	-type f \
 	> cscope.files
