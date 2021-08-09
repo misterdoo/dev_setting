@@ -32,6 +32,9 @@ find $CUS_PATH \
 	! -wholename "*.tar" \
 	! -wholename "*.gz" \
 	! -wholename "*.sh" \
+	! -wholename "*.rom" \
+	! -wholename "*.img" \
+	! -wholename "*.bin" \
 	! -wholename "*configure" \
 	! -wholename "*configure.ac" \
 	-type f \
