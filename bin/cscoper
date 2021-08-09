@@ -1,6 +1,13 @@
 #!/bin/bash
 
-find . \
+CUS_PATH=./
+
+if [ $1 ]; then
+	CUS_PATH=$1;
+fi
+#echo "----($CUS_PATH)";
+
+find $CUS_PATH \
 	! \( -type d -path './*/\.git*' -prune \) \
 	! \( -type d -path './*/\autom4te.cache*' -prune \) \
 	! -wholename "*.o" \
