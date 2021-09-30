@@ -7,8 +7,16 @@ if [ $1 ]; then
 fi
 #echo "----($CUS_PATH)";
 
+MIDDLE_NAME=""
+
+if [ $2 ]; then
+	MIDDLE_NAME="."$2;
+fi
+#echo "----($MIDDLE_NAME)";
+
 find $CUS_PATH \
-	! \( -type d -path './*/\.git*' -prune \) \
+	! \( -type d -path '${CUS_PATH}/*/\.git*' -prune \) \
+	! \( -type d -path '${CUS_PATH}\.git*' -prune \) \
 	! \( -type d -path './*/\autom4te.cache*' -prune \) \
 	! -wholename "*.o" \
 	! -wholename "*.ko" \
@@ -17,6 +25,7 @@ find $CUS_PATH \
 	! -wholename "*.bak" \
 	! -wholename "*gitignore" \
 	! -wholename "*gitmodules" \
+	! -wholename "*dirstamp" \
 	! -wholename "*.a" \
 	! -wholename "*.dll" \
 	! -wholename "*.png" \
@@ -38,4 +47,4 @@ find $CUS_PATH \
 	! -wholename "*configure" \
 	! -wholename "*configure.ac" \
 	-type f \
-	> cscope.files
+	> cscope$MIDDLE_NAME.files
