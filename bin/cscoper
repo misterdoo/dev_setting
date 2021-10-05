@@ -4,8 +4,8 @@ CUS_PATH=./
 
 if [ $1 ]; then
 	CUS_PATH=$1;
+	echo "custom path ($CUS_PATH)";
 fi
-#echo "----($CUS_PATH)";
 
 MIDDLE_NAME=""
 
@@ -15,9 +15,10 @@ fi
 #echo "----($MIDDLE_NAME)";
 
 find $CUS_PATH \
-	! \( -type d -path '${CUS_PATH}/*/\.git*' -prune \) \
-	! \( -type d -path '${CUS_PATH}\.git*' -prune \) \
-	! \( -type d -path './*/\autom4te.cache*' -prune \) \
+	! \( -type d -path "$CUS_PATH*/\.git*" -prune \) \
+	! \( -type d -path "$CUS_PATH*/*/\.git*" -prune \) \
+	! \( -type d -path "$CUS_PATH.git*" -prune \) \
+	! \( -type d -path '$CUS_PATH*/\autom4te.cache*' -prune \) \
 	! -wholename "*.o" \
 	! -wholename "*.ko" \
 	! -wholename "*.so" \
@@ -25,6 +26,7 @@ find $CUS_PATH \
 	! -wholename "*.bak" \
 	! -wholename "*gitignore" \
 	! -wholename "*gitmodules" \
+	! -wholename "*gitattributes" \
 	! -wholename "*dirstamp" \
 	! -wholename "*.a" \
 	! -wholename "*.dll" \
@@ -46,5 +48,11 @@ find $CUS_PATH \
 	! -wholename "*.bin" \
 	! -wholename "*configure" \
 	! -wholename "*configure.ac" \
+	! -wholename "*System.map" \
+	! -wholename "*config.log" \
+	! -wholename "*config.status" \
+	! -wholename "*built-in.o.cmd" \
+	! -wholename "*.o.cmd" \
+	! -wholename "*.S" \
 	-type f \
-	> cscope$MIDDLE_NAME.files
+	> cscope.files$MIDDLE_NAME
