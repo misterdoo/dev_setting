@@ -22,6 +22,10 @@ find $CUS_PATH \
 	! -wholename "*.o" \
 	! -wholename "*.ko" \
 	! -wholename "*.so" \
+	! -wholename "*.docx" \
+	! -wholename "*.TXT" \
+	! -wholename "*.txt" \
+	! -wholename "*.adoc" \
 	! -wholename "*.ttf" \
 	! -wholename "*.bak" \
 	! -wholename "*gitignore" \
@@ -52,6 +56,8 @@ find $CUS_PATH \
 	! -wholename "*config.log" \
 	! -wholename "*config.status" \
 	! -wholename "*built-in.o.cmd" \
+	! -wholename "*CMakeLists.txt" \
+	! -wholename "*.cmake" \
 	! -wholename "*.o.cmd" \
 	! -wholename "*.S" \
 	-type f \
