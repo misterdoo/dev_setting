@@ -37,6 +37,7 @@ set vb t_vb=
 set t_Co=16
 set t_kb=
 
+set encoding=utf-8
 
 " color setting
 colorscheme pablo
@@ -84,23 +85,32 @@ nmap <silent> <F5>		:Texplore<CR>
 "nmap <silent> <F5>			:wa<CR>:make unittest<CR>
 "nmap <silent> <F3>		:cp<CR>
 "nmap <silent> <F4>		:cn<CR>
-"nmap <C-PageUp>		:tabprev<SPACE>
-"nmap <C-PageDown>	:tabnext<SPACE>
-nmap <F2>		:tabnew<SPACE>
-nmap <F13>		:tabnew<SPACE>
-nmap <F14>		:tabnew<SPACE>
+"nmap <F2>		:tabnew<SPACE>
+"nmap <F13>		:tabnew<SPACE>
+"nmap <F14>		:tabnew<SPACE>
 
-nmap [2;5~ <Esc>:tabe<SPACE>
-nmap [3;5~ <Esc>:tabc<CR>
+"nmap [2;5~ <Esc>:tabe<SPACE>
+"nmap [3;5~ <Esc>:tabc<CR>
 "nmap <M-PageUp>		:tabprev<CR>
 "nmap <M-PageDown>	:tabnext<CR>
-nmap <F3>	:tabprev<CR>
-nmap <F4> 	:tabnext<CR>
+nmap <F7>	:tabprev<CR>
+nmap <F8> 	:tabnext<CR>
+
+" alt+pageup
+nmap [5;3~		:tabprev<CR>
+" alt+pagedown
+nmap [6;3~		:tabnext<CR>
 
 "command SS call <SID>nl_ss()
 nmap <silent> <F9>	:call SVN_modify_view()<CR>
 
 let Tlist_GainFocus_On_ToggleOpen = 1
+augroup VCSCommand
+	"au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr> 
+	"au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :VCSClearAndGotoOriginal <cr> 
+	au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :VCSGotoOriginal! <cr> 
+augroup END
+
 if 0
 " VCScommand setting
 let VCSCommandEnableBufferSetup = 1
@@ -108,12 +118,6 @@ let VCSCommandEdit = 'edit'
 let VCSCommandDeleteOnHide = 1
 "let VCSCommandSplit = 'vertical'
 let Tlist_GainFocus_On_ToggleOpen = 1
-
-augroup VCSCommand
-	"au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr> 
-	"au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :VCSClearAndGotoOriginal <cr> 
-	au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :VCSGotoOriginal! <cr> 
-augroup END
 
 " svncommand setting
 "let SVNCommandNameResultBuffers=1
