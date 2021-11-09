@@ -19,6 +19,7 @@ find $CUS_PATH \
 	! \( -type d -path "$CUS_PATH*/*/\.git*" -prune \) \
 	! \( -type d -path "$CUS_PATH.git*" -prune \) \
 	! \( -type d -path '$CUS_PATH*/\autom4te.cache*' -prune \) \
+	! \( -type d -path '$CUS_PATH*/*/Documentation*' -prune \) \
 	! -wholename "*.o" \
 	! -wholename "*.ko" \
 	! -wholename "*.so" \
