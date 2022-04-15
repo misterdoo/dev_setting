@@ -60,6 +60,10 @@ find $CUS_PATH \
 	! -wholename "*CMakeLists.txt" \
 	! -wholename "*.cmake" \
 	! -wholename "*.o.cmd" \
+	! -wholename "*.scr" \
+	! -wholename "*.xls" \
 	! -wholename "*.S" \
+	! -wholename "*depcomp" \
+	! -wholename "*missing" \
 	-type f \
-	> cscope.files$MIDDLE_NAME
+	> cscope${MIDDLE_NAME}.files

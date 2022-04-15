@@ -90,9 +90,9 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias l='ls -alF'
+alias l='ls -AlF'
 alias la='ls -A'
-alias ll='ls -CF'
+alias ll='ls -CAF'
 alias g='git'
 alias h='history'
 alias rm='rm -i'
@@ -123,3 +123,10 @@ if ! shopt -oq posix; then
 fi
 
 PATH=$PATH:$HOME/bin
+export GIT_EDITOR=vim
+export SVN_EDITOR=vim
+
+#LANG=C
+#LANG=ko_KR.UTF-8
+
+eval $(ssh-agent)
