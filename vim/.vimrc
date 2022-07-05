@@ -46,7 +46,7 @@ colorscheme pablo
 "colorscheme elflord
 "hi StatusLine ctermfg=4 ctermbg=0
 "hi StatusLineNC ctermfg=7
-"hi Search ctermfg=0 ctermbg=4
+hi Search ctermfg=white ctermbg=blue
 hi Folded ctermfg=8 ctermbg=0
 hi FoldColumn cterm=bold ctermfg=8 ctermbg=0
 "hi Error cterm=bold ctermbg=1 ctermfg=0

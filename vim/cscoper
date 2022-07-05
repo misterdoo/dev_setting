@@ -1,0 +1,82 @@
+#!/bin/bash
+
+CUS_PATH=./
+
+if [ $1 ]; then
+	CUS_PATH=$1;
+	echo "custom path ($CUS_PATH)";
+fi
+
+MIDDLE_NAME=""
+
+if [ $2 ]; then
+	MIDDLE_NAME="."$2;
+fi
+#echo "----($MIDDLE_NAME)";
+
+find $CUS_PATH \
+	! \( -type d -path "$CUS_PATH*/\.git*" -prune \) \
+	! \( -type d -path "$CUS_PATH*/*/\.git*" -prune \) \
+	! \( -type d -path "$CUS_PATH.git*" -prune \) \
+	! \( -type d -path '$CUS_PATH*/\autom4te.cache*' -prune \) \
+	! \( -type d -path '$CUS_PATH*/*/Documentation*' -prune \) \
+	! -wholename "*.o" \
+	! -wholename "*.ko" \
+	! -wholename "*.cmd" \
+	! -wholename "*.csv" \
+	! -wholename "*.vdg" \
+	! -wholename "*.vas" \
+	! -wholename "*.dvi" \
+	! -wholename "*.yuv" \
+	! -wholename "*.mod" \
+	! -wholename "*.mod.c" \
+	! -wholename "*modules.order" \
+	! -wholename "*.symvers" \
+	! -wholename "*.so" \
+	! -wholename "*.docx" \
+	! -wholename "*.TXT" \
+	! -wholename "*.txt" \
+	! -wholename "*.adoc" \
+	! -wholename "*.ttf" \
+	! -wholename "*.bak" \
+	! -wholename "*gitignore" \
+	! -wholename "*gitmodules" \
+	! -wholename "*gitattributes" \
+	! -wholename "*dirstamp" \
+	! -wholename "*.a" \
+	! -wholename "*.dll" \
+	! -wholename "*.png" \
+	! -wholename "*.jpg" \
+	! -wholename "*.bmp" \
+	! -wholename "*.swp" \
+	! -wholename "*.files" \
+	! -wholename "*.out" \
+	! -wholename "*.pdf" \
+	! -wholename "*.exe" \
+	! -wholename "*.bat" \
+	! -wholename "*.xml" \
+	! -wholename "*.zip" \
+	! -wholename "*.tar" \
+	! -wholename "*.gz" \
+	! -wholename "*.7z" \
+	! -wholename "*.sh" \
+	! -wholename "*.rom" \
+	! -wholename "*.img" \
+	! -wholename "*.bin" \
+	! -wholename "*configure" \
+	! -wholename "*configure.ac" \
+	! -wholename "*System.map" \
+	! -wholename "*config.log" \
+	! -wholename "*config.status" \
+	! -wholename "*built-in.o.cmd" \
+	! -wholename "*CMakeLists.txt" \
+	! -wholename "*.cmake" \
+	! -wholename "*.o.cmd" \
+	! -wholename "*.scr" \
+	! -wholename "*.xls" \
+	! -wholename "*.S" \
+	! -wholename "*depcomp" \
+	! -wholename "*missing" \
+	! -wholename "*di" \
+	-type f \
+	> cscope${MIDDLE_NAME}.files
