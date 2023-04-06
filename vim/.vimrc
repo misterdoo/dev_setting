@@ -182,7 +182,7 @@ let g:proj_run1=""
 
 " DoxygenToolkit setting
 nmap <silent> <Leader>d			:Dox<CR>
-let g:DoxygenToolkit_authorName = "dgkim <dgkim@mantech.co.kr>"
+let g:DoxygenToolkit_authorName = "dkkim <dookyoon@slworld.com>"
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 
 
@@ -191,10 +191,19 @@ let g:DoxygenToolkit_briefTag_funcName = "yes"
 set backspace=indent,eol,start
 
 "if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+	"set nobackup		" do not keep a backup file, use versions instead
 "else
-"  set backup		" keep a backup file
+	set backup			" keep a backup file
+	if !isdirectory($HOME."/backupdir_vim")
+		silent! execute "!mkdir ~/backupdir_vim"
+	endif
+	set backupdir=~/backupdir_vim	"backup dir
+	set directory=~/backupdir_vim	"swap file dir.
+	"not generate .swap
+	"set noswapfile
 "endif
+
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands

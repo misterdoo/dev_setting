@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ADD_PATH="-s /opt/sdk/sa6155/sysroots/"
+
+if [ $1 ]; then
+	ADD_PATH="-s $1";
+	echo "custom path add($ADD_PATH)";
+fi
+
+#echo "custom path add($ADD_PATH)";
+cscope -R $ADD_PATH
