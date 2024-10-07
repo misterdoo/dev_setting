@@ -21,6 +21,8 @@ set tabstop=4
 set shiftwidth=4
 set laststatus=2
 set hlsearch
+set encoding=utf-8				" The encoding displayed.
+set fileencodings=utf-8,latin1  " The encoding written to file.
 
 set autoindent		" always set autoindenting on
 

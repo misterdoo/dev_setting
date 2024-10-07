@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ADD_PATH="-s /opt/sdk/sa6155/sysroots/"
+#ADD_PATH="-s /opt/sdk/sa6155/sysroots/"
+ADD_PATH="-s /mnt/archive/toolchain/sa6155/sysroots/"
 
 if [ $1 ]; then
 	ADD_PATH="-s $1";
