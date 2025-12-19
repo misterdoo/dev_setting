@@ -78,6 +78,9 @@ let g:airline_mode_map = {
     \ 'S'  : 'S-L',
     \ 'SB' : 'S-B',
     \ }
+"let g:airline_theme='dark'
+let g:airline_theme='molokai'
+
 "##########################################
 
 "for solarized""""""""""
