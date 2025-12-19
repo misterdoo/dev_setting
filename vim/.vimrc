@@ -21,7 +21,7 @@ set tabstop=4
 set shiftwidth=4
 set laststatus=2
 set hlsearch
-set encoding=utf-8				" The encoding displayed.
+set encoding=utf-8		                             " The encoding displayed.
 set fileencodings=utf-8,euc-kr,ucs-bom,cp949,latin1  " The encoding written to file.
 
 set autoindent		" always set autoindenting on
@@ -36,19 +36,67 @@ let useplugin_acsb = 1
 
 " no beep -> visualbell mode and no flash 
 set vb t_vb=
-set t_Co=16
+"set t_Co=16
+set t_Co=256
 set t_kb=
 
 set encoding=utf-8
+
+"#########################################
+" Vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'frazrepo/vim-rainbow' "괄호 컬러인데... 잘 안보인다.
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'youttie/comfortable-comtion.cim'
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+
+let NERDTreeShowHidden=1
+let g:rainbow_active = 1
+"let g:airline#extensions#tabline#enabled = 1	"글자가 잘 안보인다.. 
+"let g:airline_section_a = airline#section#create(['mode'])
+"let g:airline_section_a = '%{mode()}'	" 한글자로 표시 
+let g:airline_mode_map = {
+	\ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V-L',
+    \ 'VB' : 'V-B',
+    \ 's'  : 'S',
+    \ 'S'  : 'S-L',
+    \ 'SB' : 'S-B',
+    \ }
+"##########################################
+
+"for solarized""""""""""
+"syntax enable
+"set background=dark
+"let g:solarized_termcolors=256
+"colorscheme solarized
+"""""""""""""""""""""""""
 
 " color setting
 colorscheme pablo
 "colorscheme desert
 "colorscheme molokai
 "colorscheme elflord
-"hi StatusLine ctermfg=4 ctermbg=0
+hi StatusLine ctermfg=black ctermbg=blue
 "hi StatusLineNC ctermfg=7
-hi Search ctermfg=white ctermbg=blue
+"hi Search ctermfg=black ctermbg=blue
+"hi Search ctermfg=white ctermbg=darkmagenta
+hi Search ctermfg=magenta ctermbg=DarkBlue
 hi Folded ctermfg=8 ctermbg=0
 hi FoldColumn cterm=bold ctermfg=8 ctermbg=0
 "hi Error cterm=bold ctermbg=1 ctermfg=0
@@ -56,9 +104,10 @@ hi ErrorMsg cterm=bold ctermbg=1 ctermfg=4
 "hi clear ModeMsg
 "hi ModeMsg cterm=bold ctermfg=3
 hi LineNr   ctermfg=darkgrey ctermbg=black
-hi LineNr   term=underline ctermfg=3 ctermbg=0 guifg=Yellow
+"hi LineNr   term=underline ctermfg=3 ctermbg=0 guifg=Yellow
 hi Normal   ctermfg=15
-"hi Comment term=bold ctermfg=4
+"cterm=bold
+hi Comment ctermfg=darkgrey
 
 
 hi DiffAdd ctermfg=0
@@ -95,6 +144,7 @@ nmap <silent> <F5>		:Texplore<CR>
 "nmap [3;5~ <Esc>:tabc<CR>
 "nmap <M-PageUp>		:tabprev<CR>
 "nmap <M-PageDown>	:tabnext<CR>
+"---------------
 nmap <F7>	:tabprev<CR>
 nmap <F8> 	:tabnext<CR>
 
@@ -102,9 +152,16 @@ nmap <F8> 	:tabnext<CR>
 nmap [5;3~		:tabprev<CR>
 " alt+pagedown
 nmap [6;3~		:tabnext<CR>
+"---------------
+"for tmux
+nmap <C-PageDown> :tabnext<CR>
+nmap <C-PageUp>   :tabprev<CR>
+"---------------
 
 "command SS call <SID>nl_ss()
 nmap <silent> <F9>	:call SVN_modify_view()<CR>
+
+map <C-n> :NERDTreeToggle<CR>
 
 let Tlist_GainFocus_On_ToggleOpen = 1
 augroup VCSCommand
@@ -184,7 +241,7 @@ let g:proj_run1=""
 
 " DoxygenToolkit setting
 nmap <silent> <Leader>d			:Dox<CR>
-let g:DoxygenToolkit_authorName = "dkkim <dookyoon@slworld.com>"
+let g:DoxygenToolkit_authorName = "dgkim <dgkim@mantech.co.kr>"
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 
 
@@ -193,19 +250,15 @@ let g:DoxygenToolkit_briefTag_funcName = "yes"
 set backspace=indent,eol,start
 
 "if has("vms")
-	"set nobackup		" do not keep a backup file, use versions instead
+"  set nobackup		" do not keep a backup file, use versions instead
 "else
 	set backup			" keep a backup file
-	if !isdirectory($HOME."/backupdir_vim")
-		silent! execute "!mkdir ~/backupdir_vim"
+	if !isdirectory($HOME."/.vimbackupdir")
+		silent! execute "!mkdir ~/.vimbackupdir"
 	endif
-	set backupdir=~/backupdir_vim	"backup dir
-	set directory=~/backupdir_vim	"swap file dir.
-	"not generate .swap
-	"set noswapfile
+	set backupdir=~/.vimbackupdir	"backup dir
+	set directory=~/.vimbackupdir	"swap file dir.
 "endif
-
-
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands

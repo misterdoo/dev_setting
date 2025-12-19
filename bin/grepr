@@ -2,5 +2,5 @@
 
 if [ -z "$1" ]; then echo "`basename $0` pattern"; exit 0; fi
 
-find . -type f ! -wholename "*.(swp|cmd|bak|gz)$" -exec grep --color -H -n -e "$*" {} \;
+find . -type f ! -wholename "*.(swp|cmd|bak|gz)$" -exec grep --color -i -H -n -e "$*" {} \;
 
