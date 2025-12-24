@@ -56,14 +56,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = no ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [ "$color_prompt" = yes ]; then
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='\[\033[37m\]\u\[\033[0m\]@\[\033[036m\]\h\[\033[0m\]\$\W> '
 else
-	#PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 	#PS1='\[\033[37m\]\u\[\033[0m\]@\[\033[036m\]\h\[\033[0m\]\w> '
 	PS1='\[\033[37m\]\u\[\033[0m\]@\[\033[036m\]\h\[\033[0m\]\$\W> '
 fi
-unset color_prompt force_color_prompt
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -90,13 +91,16 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias l='ls -AlF'
+alias l='ls -Al'
 alias la='ls -A'
-alias ll='ls -CAF'
+alias ll='ls -CF'
 alias g='git'
 alias h='history'
 alias rm='rm -i'
 alias cp='cp -i'
+alias cls='clear'
+alias google-chrome='google-chrome -incognito'
+alias google-chrome-stable='google-chrome-stable -incognito'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -111,6 +115,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -122,11 +127,37 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/bin:/home/dookyoonkim/work/iND880DevelopmentTools_25.3/Tools/inVisionSuite/scripts/w6/
 export GIT_EDITOR=vim
 export SVN_EDITOR=vim
+#export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JAVA_HOME=java-1.17.0-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+export LD_LIBRARY_PATH=/usr/lib/:
+export PYTHONPATH=$PATH:$PYTHONPATH
 
-#LANG=C
+if [ ! -z /home/dookyoonkim/work/raspberry-dvr/app.rdr/build/.libsl.so ]; then
+	NEW_PATH="/home/dookyoonkim/work/raspberry-dvr/app.rdr/build/.libsl.so:"
+
+	if [[ ":${LD_LIBRARY_PATH}:" != *"${NEW_PATH}"* ]]; then
+		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}${NEW_PATH}"
+	fi
+fi
+if [ ! -z /home/dookyoonkim/work/logman/app.slm/build/.libsl.so ]; then
+	NEW_PATH="/home/dookyoonkim/work/logman/app.slm/build/.libsl.so:"
+
+	if [[ ":${LD_LIBRARY_PATH}:" != *"${NEW_PATH}"* ]]; then
+		export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}${NEW_PATH}
+	fi
+fi
+
+# sudo vmhgfs-fuse .host:/ /mnt/hgfs/ -o allow_other -o uid=1000
 #LANG=ko_KR.UTF-8
-
+ 
 eval $(ssh-agent)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
